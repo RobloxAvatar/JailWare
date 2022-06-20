@@ -15,3 +15,5 @@ for i, v in pairs(getgc(true)) do
         end
     end
 end
+
+return JailWare
