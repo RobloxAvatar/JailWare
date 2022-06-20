@@ -1,3 +1,10 @@
+require(game:GetService("ReplicatedStorage").Game.Notification).new({
+    Text = "Loading JailWare...",
+    Duration = 4
+})
+
+wait(4)
+
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/RobloxAvatar/uiLibary/main/Uilib.lua')))()
 
 local w = library:CreateWindow("JailWare")
