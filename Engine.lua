@@ -7,7 +7,7 @@ for i, v in pairs(getgc(true)) do
             table.insert(JailWare.Doors, v)
         end
     elseif type(v) == "function" then
-        if getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts.LocalScript then
+        if getfenv(v).script == game:GetService("Players").LocalPlayer.PlayerScripts:FindFirstChild("LocalScript") then
             local con = getconstants(v)
             if table.find(con, "SequenceRequireState") then
                 JailWare.OpenDoor = v
