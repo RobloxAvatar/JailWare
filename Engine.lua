@@ -6,6 +6,16 @@ function JailWare.MakeNotification(txt, time)
 	p:MakeNotification({Name = "JailWare", Content = txt, Time = time})
 end
 
+function JailWare.Teleport(cframe)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.Parent = nil
+    for i,v in pairs(getnilinstances()) do
+        if v.Name == "HumanoidRootPart" then
+            v.CFrame = cframe
+            v.Parent = game.Players.LocalPlayer.Character
+        end
+    end
+end
+
 if game.PlaceId == 606849621 then
     for i, v in pairs(getgc(true)) do
         if type(v) == "table" then
