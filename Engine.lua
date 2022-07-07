@@ -6,6 +6,20 @@ function JailWare.MakeNotification(txt, time)
 	p:MakeNotification({Name = "JailWare", Content = txt, Time = time})
 end
 
+function JailWare.GetCasinoCode()
+    local code = ""
+    for i,v in pairs(game:GetService("Workspace").Casino.RobberyDoor.Codes:GetChildren()) do
+        if v:FindFirstChildOfClass("Part") then
+            for i2,v2 in pairs(v:GetChildren()) do
+                if v2.SurfaceGui.TextLabel.Text ~= nil and v2.SurfaceGui.TextLabel.Text ~= "" then
+                    code = code .. v2.SurfaceGui.TextLabel.Text
+                end
+            end
+        end
+    end
+    return code
+end
+
 function JailWare.Teleport(cframe)
     game.Players.LocalPlayer.Character.HumanoidRootPart.Parent = nil
     for i,v in pairs(getnilinstances()) do
