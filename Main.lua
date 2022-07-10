@@ -6,6 +6,26 @@ wait(5.1)
 
 engine.MakeNotification("Successfully Initialized!", 3)
 
+wait(3)
+
+function destroylasers()
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v.Name == "Part" and v.Parent.Name == "2_StorageAndMeeting" then
+            v:Destroy()
+        end
+    end
+    for i,v in pairs(workspace:GetDescendants()) do
+        if v.Name == "BarbedWire" then
+            v:Destroy()
+        end
+    end
+    for i,v in pairs(workspace:GetDescendants()) do
+        if string.find(v.Name, "Lasers") then
+            v:Destroy()
+        end
+    end
+end
+
 local library = loadstring(game:HttpGet(('https://raw.githubusercontent.com/RobloxAvatar/uiLibary/main/Uilib.lua')))()
 
 local w = library:CreateWindow("JailWare")
@@ -18,10 +38,6 @@ MainTab:Button("Open All Doors", function()
 end)
 
 MainTab:Button("Remove Lasers", function()
-    for i,v in pairs(workspace:GetDescendants()) do
-        if string.find(v.Name, "Lasers") then
-            v:Destroy()
-        end
-    end
+    destroylasers()
     engine.MakeNotification("Removed Lasers!", 3)
 end)
