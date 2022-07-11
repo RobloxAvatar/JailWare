@@ -1,7 +1,26 @@
+--// Check if Already in Env 
+
+if network_keys and network then 
+    return network_keys, network;
+end;
+
+--// Variables 
+
 local start_time = tick();
+
+local replicated_storage = game:GetService("ReplicatedStorage");
+local collection_service = game:GetService("CollectionService");
+
 local network = getupvalue(require(game.ReplicatedStorage.Module.AlexChassis).SetEvent, 1);
 local keys_list = getupvalue(getupvalue(network.FireServer, 1), 3);
+
+local game_folder = replicated_storage.Game;
+
+local team_choose_ui = require(game_folder.TeamChooseUI); -- module used in multiple keys
+local default_actions = require(game_folder.DefaultActions); -- module used in multiple keys
+
 local roblox_environment = getrenv();
+local network_keys = {};
 
 local function fetch_key(caller_function)
     local constants = getconstants(caller_function);
@@ -29,8 +48,6 @@ local function fetch_key(caller_function)
         end;
     end;
 end;
-
-local network_keys = {}
 
 local default_actions = require(game.ReplicatedStorage.Game.DefaultActions);
 
