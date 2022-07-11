@@ -39,3 +39,5 @@ do
     
     network_keys.Punch = fetch_key(punch_function)
 end
+
+return network_keys, network
