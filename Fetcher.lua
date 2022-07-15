@@ -51,6 +51,12 @@ do
     network_keys.ExitCar = fetch_key(exit_car_function)
 end
 
+do
+    local switch_team_function = getproto(team_choose_ui.Show, 4)
+    
+    network_keys.SwitchTeam = fetch_key(switch_team_function)
+end
+
 local environment = getgenv()
 
 environment.network_keys, environment.network = network_keys, network
