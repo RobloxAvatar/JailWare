@@ -1,6 +1,8 @@
 --[[
-  Updated
-]]
+	ui-engine-v2
+	version 1.3a
+	by Singularity (V3rm @ King Singularity) (Discord @ Singularity#5490)
+--]]
 
 local ui_options = {
 	main_color = Color3.fromRGB(13, 105, 172),
@@ -2019,4 +2021,21 @@ function library:AddWindow(title, options)
 
 	return window_data, Window
 end
+
+do -- Example UI
+	local Window = library:AddWindow("Maple Hospital", {
+		main_color = Color3.fromRGB(13, 105, 172),
+		min_size = Vector2.new(500, 600),
+		toggle_key = Enum.KeyCode.RightShift,
+		can_resize = true,
+	})
+	local Tab = Window:AddTab("Main")
+
+	do -- Elements
+		Tab:AddLabel("Hello World!")
+
+	end
+
+	Tab:Show()
+	library:FormatWindows()
 end
