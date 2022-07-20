@@ -1,4 +1,3 @@
-spawn(function()
 local ui_options = {
 	main_color = Color3.fromRGB(13, 105, 172),
 	min_size = Vector2.new(400, 300),
@@ -110,7 +109,7 @@ Window.Active = true
 Window.BackgroundColor3 = Color3.new(1, 1, 1)
 Window.BackgroundTransparency = 1
 Window.ClipsDescendants = true
-Window.Position = UDim2.new(0, 1500, 0, 485)
+Window.Position = UDim2.new(0, 20, 0, 20)
 Window.Selectable = true
 Window.Size = UDim2.new(0, 200, 0, 200)
 Window.Image = "rbxassetid://2851926732"
@@ -331,7 +330,7 @@ Dropdown.BackgroundColor3 = Color3.new(1, 1, 1)
 Dropdown.BackgroundTransparency = 1
 Dropdown.BorderSizePixel = 0
 Dropdown.Position = UDim2.new(-0.055555556, 0, 0.0833333284, 0)
-Dropdown.Size = UDim2.new(0, 350, 0, 20)
+Dropdown.Size = UDim2.new(0, 200, 0, 20)
 Dropdown.ZIndex = 2
 Dropdown.Font = Enum.Font.GothamBold
 Dropdown.Text = "      Dropdown"
@@ -1097,7 +1096,7 @@ function library:AddWindow(title, options)
 		do -- Add Tab
 			function window_data:AddTab(tab_name)
 				local tab_data = {}
-				tab_name = tostring(tab_name or "Invis Fling")
+				tab_name = tostring(tab_name or "New Tab")
 				tab_selection.Visible = true
 
 				local new_button = Prefabs:FindFirstChild("TabButton"):Clone()
@@ -2015,4 +2014,86 @@ function library:AddWindow(title, options)
 	end
 
 	return window_data, Window
+end
+
+do -- Example UI
+	local Window = library:AddWindow("Preview", {
+		main_color = Color3.fromRGB(41, 74, 122),
+		min_size = Vector2.new(500, 600),
+		toggle_key = Enum.KeyCode.RightShift,
+		can_resize = true,
+	})
+	local Tab = Window:AddTab("Tab 1")
+
+	do -- Elements
+		Tab:AddLabel("Hello World!")
+
+		Tab:AddButton("Button", function()
+			print("Button clicked.")
+		end)
+
+		Tab:AddTextBox("TextBox", function(text)
+			print(text)
+		end, {
+			["clear"] = false, -- Default: true (options are optional)
+		})
+
+		local Switch = Tab:AddSwitch("Switch", function(bool)
+			print(bool)
+		end)
+		Switch:Set(true)
+
+		local Slider = Tab:AddSlider("Slider", function(x)
+			print(x)
+		end, { -- (options are optional)
+			["min"] = 0, -- Default: 0
+			["max"] = 100, -- Default: 100
+			["readonly"] = false, -- Default: false
+		})
+		Slider:Set(50)
+
+		Tab:AddKeybind("Keybind", function(key)
+			print(key)
+		end, { -- (options are optional)
+			["standard"] = Enum.KeyCode.RightShift -- Default: RightShift
+		})
+
+		local Dropdown = Tab:AddDropdown("Dropdown", function(object)
+			print(object)
+		end)
+		for i = 1, 9 do
+			Dropdown:Add(tostring(i))
+		end
+		local obj = Dropdown:Add("10")
+		obj:Remove()
+
+		local CP = Tab:AddColorPicker(function(color)
+			print(color)
+		end)
+		CP:Set(Color3.new(1, 0, 0))
+
+		local Console = Tab:AddConsole({
+			["y"] = 100,
+			["source"] = "Lua",
+		})
+		Console:Set("-- Gamer time!\nfor i = 1, 9 do \n    print(i)\nend")
+		print(Console:Get())
+
+		local HA = Tab:AddHorizontalAlignment()
+		HA:AddButton("Execute", function()
+			loadstring(Console:Get())()
+		end)
+		HA:AddButton("Clear", function()
+			Console:Set("")
+		end)
+
+		local Folder = Tab:AddFolder("Folder") -- This can contain exactly the same as a Tab. You can have as many folders as you'd like to.
+		Folder:AddLabel("Hello")
+		local Folder2 = Folder:AddFolder("?")
+		Folder2:AddLabel("Woo!")
+
+	end
+
+	Tab:Show()
+	library:FormatWindows()
 end
