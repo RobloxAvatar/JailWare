@@ -41,3 +41,20 @@ MainTab:Button("Remove Lasers", function()
     destroylasers()
     engine.MakeNotification("Removed Lasers!", 3)
 end)
+
+MainTab:Toggle("Infinite Nitro", function(bool)
+    _G.infNitro = bool
+end)
+
+game:GetService("UserInputService").InputBegan:Connect(function(i, istyping)
+    if istyping == true then return end
+    if _G.infNitro == true then
+        if i.KeyCode == Enum.KeyCode.Q then
+            for i,v in next, getgc(true) do
+                if type(v) == "table" and rawget(v, "Nitro") then
+                    v.Nitro = math.huge
+                end
+            end
+        end
+    end
+end)
