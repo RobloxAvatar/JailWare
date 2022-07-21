@@ -2055,7 +2055,7 @@ function tpto(victim)
 end
 
 do
-	local Window = library:AddWindow("Maple Hospital", {
+	local Window = library:AddWindow("JailWare", {
 		main_color = Color3.fromRGB(13, 105, 172),
 		min_size = Vector2.new(400, 270),
 		toggle_key = Enum.KeyCode.RightShift,
