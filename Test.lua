@@ -2041,11 +2041,11 @@ function tpto(victim)
         local wayPoints = path:GetWaypoints()
         for i = 1, #wayPoints do
             local point = wayPoints[i]
-            local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)})
+            local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.001), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)})
             tween:Play()
             local success = tween.Completed:Wait()
             if not success then
-                local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.1), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)}):Play()
+                local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.001), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)}):Play()
                 if not success then
                     break
                 end
