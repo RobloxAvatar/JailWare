@@ -2016,19 +2016,6 @@ function library:AddWindow(title, options)
 	return window_data, Window
 end
 
-function getDayCareWhiteBoard()
-    local dist = math.huge
-    for i,v in next, workspace:GetChildren() do
-        if v.Name == "Whiteboard" then
-            if (game.Players.LocalPlayer.Character.HumanoidRootPart.Position - v.Main.Position).magnitude < dist then
-                if v.Main.CFrame == CFrame.new(-230.121185, 49.4491196, 143.116287, 1, 0, 0, 0, 1, 0, 0, 0, 1) then
-                    return v
-                end
-            end
-        end
-    end
-end
-
 function tpto(victim)
     _G.Target = victim
     local path = game:GetService("PathfindingService"):CreatePath()
