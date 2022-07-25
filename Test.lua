@@ -2058,7 +2058,7 @@ do
 	do
 		MainTab:AddLabel("this is the most stable version!")
 
-		MainTab:AddTextBox("Goto Player[Has Maximum Distance]", function(plr)
+		MainTab:AddTextBox("Goto Player", function(plr)
 	        local teleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxAvatar/JailWare/main/Teleporation.lua"))()
 		teleport(game.Players[plr].Character.HumanoidRootPart.CFrame)
         end)
