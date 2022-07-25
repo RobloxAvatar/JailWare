@@ -2016,29 +2016,33 @@ function library:AddWindow(title, options)
 	return window_data, Window
 end
 
-function tpto(victim)
-    _G.Target = victim
-    local path = game:GetService("PathfindingService"):CreatePath()
-
-    local victim = game.Players[_G.Target].Character.HumanoidRootPart
-
-    path:ComputeAsync(game.Players.LocalPlayer.Character.HumanoidRootPart.Position, victim.Position)
-
-    if path.Status == Enum.PathStatus.Success then
-        local wayPoints = path:GetWaypoints()
-        for i = 1, #wayPoints do
-            local point = wayPoints[i]
-            local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.04), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)})
-            tween:Play()
-            local success = tween.Completed:Wait()
-            if not success then
-                local tween = game:GetService("TweenService"):Create(game:GetService("Players").LocalPlayer.Character.HumanoidRootPart, TweenInfo.new(0.04), {CFrame = CFrame.new(point.Position) + Vector3.new(0,5,0)}):Play()
-                if not success then
-                    break
-                end
-            end
+function GetPlayer(String)
+    local Found = {}
+    local strl = String:lower()
+    if strl == "all" then
+        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+            table.insert(Found,v)
         end
+    elseif strl == "others" then
+        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Name ~= lplayer.Name then
+                table.insert(Found,v)
+            end
+        end   
+	elseif strl == "me" then
+        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Name == lplayer.Name then
+                table.insert(Found,v)
+            end
+        end  
+    else
+        for i,v in pairs(game:GetService("Players"):GetPlayers()) do
+            if v.Name:lower():sub(1, #String) == String:lower() then
+                table.insert(Found,v)
+            end
+        end    
     end
+    return Found    
 end
 
 do
@@ -2055,7 +2059,8 @@ do
 		MainTab:AddLabel("this is the most stable version!")
 
 		MainTab:AddTextBox("Goto Player[Has Maximum Distance]", function(plr)
-	        tpto(plr)
+	        local teleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxAvatar/JailWare/main/Teleporation.lua"))()
+		teleport(game.Players[plr].Character.HumanoidRootPart.CFrame)
         end)
 	end
 
