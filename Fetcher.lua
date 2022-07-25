@@ -57,6 +57,16 @@ do
     network_keys.SwitchTeam = fetch_key(switch_team_function)
 end
 
+do
+    local path = getconnections(collection_service:GetInstanceAddedSignal("VehicleSeat"))[1].Function
+
+    local i2 = getupvalue(path, 1)
+
+    local io_ad = getupvalue(i2, 3)
+
+    network_keys.EnterCar = fetch_key(io_ad)
+end
+
 local environment = getgenv()
 
 environment.network_keys, environment.network = network_keys, network
