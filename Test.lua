@@ -2054,16 +2054,39 @@ do
 	})
 
 	local MainTab = Window:AddTab("Main")
+    local TeleportTab = Window:AddTab("Teleports")
 
 	do
 		MainTab:AddLabel("this is the most stable version!")
 
 		MainTab:AddTextBox("Goto Player", function(plr)
 	        local teleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxAvatar/JailWare/main/Teleporation.lua"))()
-		teleport(game.Players[plr].Character.HumanoidRootPart.CFrame)
+		    teleport(game.Players[plr].Character.HumanoidRootPart.CFrame)
+        end)
+        local dropdown = tab:AddDropdown("Teleports", function(place)
+	        if place == "Gun Store" then
+		        teleport(CFrame.new(3.81466174, 19.2178307, -1756.70508, -0.999118149, -4.10346992e-08, -0.0419867486, -3.99372233e-08, 1, -2.69774105e-08, 0.0419867486, -2.52767869e-08, -0.999118149))
+            else
+                if place == "Donut Store" then
+                    teleport(CFrame.new(94.2134933, 19.2178268, -1523.93054, 0.950817585, 7.60632446e-08, -0.309751362, -6.61805828e-08, 1, 4.24133013e-08, 0.309751362, -1.98277874e-08, 0.950817585))
+                else
+                    if place == "Casino" then
+                        teleport(CFrame.new(-229.90181, 19.5091496, -4668.22363, 0.296979189, -1.50551358e-08, -0.954883933, 1.28668265e-09, 1, -1.53662842e-08, 0.954883933, 3.33483419e-09, 0.296979189))
+                    else
+                        if place == "Garage Donut Store" then
+                            teleport(CFrame.new(109.558899, 19.2187424, -1396.84473, 0.228547618, -5.24363983e-08, 0.973532736, 9.28584498e-09, 1, 5.16820222e-08, -0.973532736, -2.77172929e-09, 0.228547618))
+                        end
+                    end
+                end
+	        end
         end)
 	end
 
-	MainTab:Show()
+    local gunstore = dropdown:Add("Gun Store")
+    local donutstore = dropdown:Add("Donut Store")
+    local casino = dropdown:Add("Casino")
+    local garagedonutstore = dropdown:Add("Garage Donut Store")
+    
+    MainTab:Show()
 	library:FormatWindows()
 end
