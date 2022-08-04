@@ -2063,7 +2063,7 @@ do
 	        local teleport = loadstring(game:HttpGet("https://raw.githubusercontent.com/RobloxAvatar/JailWare/main/Teleporation.lua"))()
 		    teleport(game.Players[plr].Character.HumanoidRootPart.CFrame)
         end)
-        local dropdown = tab:AddDropdown("Teleports", function(place)
+        local dropdown = TeleportTab:AddDropdown("Teleports", function(place)
 	        if place == "Gun Store" then
 		        teleport(CFrame.new(3.81466174, 19.2178307, -1756.70508, -0.999118149, -4.10346992e-08, -0.0419867486, -3.99372233e-08, 1, -2.69774105e-08, 0.0419867486, -2.52767869e-08, -0.999118149))
             else
