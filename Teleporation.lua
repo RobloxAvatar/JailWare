@@ -1,3 +1,7 @@
+--[[
+Updated
+]]
+
 local replicated_storage = game:GetService("ReplicatedStorage");
 local run_service = game:GetService("RunService");
 local pathfinding_service = game:GetService("PathfindingService");
